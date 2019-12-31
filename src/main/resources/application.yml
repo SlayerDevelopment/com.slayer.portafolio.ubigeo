@@ -1,0 +1,24 @@
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: debug
+server:
+  port: 7001
+spring:
+  datasource:
+    driver-class-name: org.h2.Driver
+    password: ''
+    url: jdbc:h2:mem:ubigeo
+    username: sa
+  h2:
+    console:
+      enabled: true
+      path: /console
+      settings:
+        trace: false
+        web-allow-others: false
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create-drop
