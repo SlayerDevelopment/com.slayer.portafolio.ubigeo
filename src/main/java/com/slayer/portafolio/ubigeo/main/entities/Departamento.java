@@ -10,13 +10,15 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Index;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name = "departamento")
+@Table(name = "departamento", indexes = {
+		@Index(name = "index_valor_departamento", columnList = "valor", unique = true) })
 public class Departamento implements Serializable {
 
 	private static final long serialVersionUID = -3453426102719206649L;
@@ -26,9 +28,9 @@ public class Departamento implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(name = "valor", nullable = false, length = 2)
+	@Column(name = "valor", nullable = false, length = 2, unique = true)
 	private String valor;
-	
+
 	@Column(name = "nombre", nullable = false, length = 13)
 	private String nombre;
 

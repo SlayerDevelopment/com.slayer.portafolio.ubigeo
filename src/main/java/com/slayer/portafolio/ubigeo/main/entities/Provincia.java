@@ -10,6 +10,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Index;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -18,7 +19,7 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name = "provincia")
+@Table(name = "provincia", indexes = { @Index(name = "index_valor_provincia", columnList = "valor", unique = true) })
 public class Provincia implements Serializable {
 
 	private static final long serialVersionUID = 927063980847287899L;
@@ -28,7 +29,7 @@ public class Provincia implements Serializable {
 	@JsonIgnore
 	private Long id;
 
-	@Column(name = "valor", nullable = false, length = 4)
+	@Column(name = "valor", nullable = false, length = 4, unique = true)
 	private String valor;
 
 	@Column(name = "nombre", nullable = false, length = 23)
@@ -43,7 +44,7 @@ public class Provincia implements Serializable {
 	private List<Distrito> distritos = new ArrayList<Distrito>();
 
 	public Provincia() {
-		
+
 	}
 
 	public Provincia(Long id, String valor, String nombre, Departamento departamentoId, List<Distrito> distritos) {

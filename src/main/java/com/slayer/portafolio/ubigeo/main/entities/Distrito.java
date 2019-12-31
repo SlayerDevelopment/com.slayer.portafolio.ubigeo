@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Index;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -14,7 +15,7 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name = "distrito")
+@Table(name = "distrito", indexes = { @Index(name = "index_valor_distrito", columnList = "valor", unique = true) })
 public class Distrito implements Serializable {
 
 	private static final long serialVersionUID = 6452159146881662372L;
@@ -24,7 +25,7 @@ public class Distrito implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(name = "valor", nullable = false, length = 6)
+	@Column(name = "valor", nullable = false, length = 6, unique = true)
 	private String valor;
 
 	@Column(name = "nombre", nullable = false, length = 36)
